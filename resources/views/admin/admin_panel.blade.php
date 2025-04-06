@@ -27,6 +27,25 @@
                 <label for = "image">Image:</label>
                 <input name = "image" type="file">
                 <button class = "header-button" type="submit">Create</button>
+                @if (\Session::has('success'))
+    <div class="alert alert-success">
+        {!! \Session::get('success') !!}
+    </div>
+    @endif
+    @if (\Session::has('fail'))
+    <div class="alert alert-fail">
+            {!! \Session::get('fail') !!}
+    </div>
+    @endif
+    @if ($errors->any())
+    <div class="alert alert-fail">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
             </form>
             
         </div>

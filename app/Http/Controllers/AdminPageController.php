@@ -15,6 +15,15 @@ class AdminPageController extends Controller//index(sax),show(1hat),create(get z
     public function index(){
         $users = User::get();
 
-        return view('admin.see_all_users')->with(compact($users));
+        return view('admin.see_all_users',compact('users'));
+    }
+
+    public function show(){
+        return view('admin.see_one_user');
+    }
+
+    public function show_product(){
+        return view('admin.see_one_product');
     }
 }
+ 

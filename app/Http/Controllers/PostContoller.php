@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class PostContoller extends Controller
 {
@@ -31,10 +33,33 @@ class PostContoller extends Controller
         $product->variety = $request->variety;
         $product->baking = $request->baking;
         $product->grinding = $request->grinding;
-        $product->image = $request->file('image')->store('/product_images','public');
+        $product->image = $request->file('image')->store('product_images','public');
         
-        $product->save();
+        if( $product->save() ){
+            return redirect()->back()->with('success', 'product created');
+        }
+        return redirect()->back()->with('fail', 'incorect input');
+    }
+    public function show(Request $request){
+        $request->validate([
+            'input' => 'required'//name, email or id
+        ]);
+        //$user = 'not initalized';
+        if( is_numeric($request->input) ){
+            $user = User::find($request->input);
+        }elseif(filter_var($request->input, FILTER_VALIDATE_EMAIL)){
+            $user = User::where('email', '=',$request->input)->firstOrFail();
+        }
+        elseif(ctype_alpha(str_replace(' ', '', $request->input))){
+            $user = User::where('name','LIKE','%'.$request->input.'%')->get();
+        }
+        else{
+            return redirect()->back()->with('fail', 'Please input name eg."Levon Gabrielyan",email, or Id number');
+        }
+        return view('admin.see_one_user',compact('user'));
+    }
 
-        return view('admin.admin_panel');
+    public function show_product(Request $request){
+        
     }
 }

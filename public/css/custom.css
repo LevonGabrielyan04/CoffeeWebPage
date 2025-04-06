@@ -301,6 +301,7 @@ accent-color:#AB2531;
 .product_card-image{
     max-width: 236px;
     width: 100%;
+    max-height: 200px;
 }
 
 .product_card-info{
@@ -842,6 +843,7 @@ accent-color:#AB2531;
 
   .admin_button{
     height: fit-content;
+    background-color:#007aff;
   }
 
   .center{
@@ -849,6 +851,7 @@ accent-color:#AB2531;
     justify-content: center;
     align-items: center;
     height: 100%;
+    /* flex-direction:column; */
   }
 
   .form_at_center{
@@ -869,4 +872,50 @@ accent-color:#AB2531;
 
   .admin_form_input{
     height: 30px;
+  }
+
+  .alert-success{
+    color:green;
+  }
+
+  .alert-fail{
+    color:blue;
+  }
+
+  .alert{
+    font-weight: 600;
+  }
+
+  .admin-header{
+    background-color: #AB2531;
+    color:white;
+    padding:10px;
+    border-radius: 10px;
+  }
+
+  .all_users{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1290px;
+    width: 100%;
+  }
+
+  .user_card{
+    width: 300px;
+    display: inline;
+  }
+
+  .box_at_center{
+    background-color:#FDF2E3;
+    border: 1px solid #AB2531;
+    padding:30px;
+    border-radius: 25px;
+  }
+
+  .center_in_see_one{
+    flex-direction: column;
+  }
+
+  .user_card-no-border{
+    border: none;
   }
