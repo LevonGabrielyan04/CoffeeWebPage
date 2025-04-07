@@ -18,6 +18,8 @@ Route::get('/', function () {
       });
     return view('index', compact('products'));
 })->name('index');
+Route::get('/show_sorted', [ProductPageController::class, 'show_sorted'])->name('show_sorted');
+Route::get('/show_sorted_by_date', [ProductPageController::class, 'show_sorted_by_date'])->name('show_sorted_by_date');
 
 Route::get('/dashboard', function () {
     //return view('dashboard');

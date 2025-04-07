@@ -20,36 +20,38 @@
             <span class = "product_path_second font-syne">Espresso</span>
         </div>
         <div class = "product_card_big">
-            <img src="img\shop-card.png">
+            {{-- <img src="img\shop-card.png"> --}}
+            <div class = "product_card-container">
+            <img class="product_page_image" src="{{ asset("storage/".$product->image) }}">
             <div class = "product_card_text font-syne">
                 <div class = "product_card-text-name_and_description font-syne">
-                    <div class = "product_card-text-name">Espresso blend</div>
-                    <div class = "product_card-text-description">Δυνατό χαρμάνι από εκλεκτές ποικιλίες με πλούσιο άρωμα και ιδιαίτερη γεύση.</div>
+                    <div class = "product_card-text-name">{{$product->name}}</div>
+                    <div class = "product_card-text-description">{{$product->description  }}</div>
                 </div>
-                <div class = "product_card_big-price">$120</div>
+                <div class = "product_card_big-price">${{$product->price  }}</div>
                 <div class = "unknown_button_div">
                     <div class = "unknown_button_div-text">Συσκευασία</div>
-                    <button class = "unknown_button_div-button">194γρ.</button>
+                    <button class = "unknown_button_div-button">{{$product->weight  }}γρ.</button>
                 </div>
                 <div>
                     <div class = "product_property">Υψόμετρο: </div>
-                    <div class = "product_value">1.800 - 2.200μ</div>
+                    <div class = "product_value">{{$product->altitude  }}μ</div>
                 </div>
                 <div>
                     <div class = "product_property">Επεξεργασία: </div>
-                    <div class = "product_value">Wet Process</div>
+                    <div class = "product_value">{{$product->processing  }}</div>
                 </div>
                 <div>
                     <div class = "product_property">Ποικιλία:</div>
-                    <div class = "product_value">Arabica</div>
+                    <div class = "product_value">{{$product->variety  }}</div>
                 </div>
                 <div>
                     <div class = "product_property">Ψήσιμο: </div>
-                    <div class = "product_value">Middle</div>
+                    <div class = "product_value">{{$product->baking  }}</div>
                 </div>
                 <div>
                     <div class = "product_property">Τύπος άλεσης: </div>
-                    <div class = "product_value">Χωρίς άλεσμα</div>
+                    <div class = "product_value">{{$product->grinding  }}</div>
                 </div>
 
                 <div class = "selected_count">
@@ -62,6 +64,7 @@
                 </div>
             </div>
         </div>
+            </div>
         <div class = "recently_viewed_container">
             <div class = "recently_viewed">
                 <div class = "recently_viewed-span font-syne">Δοκιμάστε επίσης</div>

@@ -44,7 +44,6 @@ class PostContoller extends Controller
         $request->validate([
             'input' => 'required'//name, email or id
         ]);
-        //$user = 'not initalized';
         if( is_numeric($request->input) ){
             $user = User::find($request->input);
         }elseif(filter_var($request->input, FILTER_VALIDATE_EMAIL)){
@@ -60,6 +59,24 @@ class PostContoller extends Controller
     }
 
     public function show_product(Request $request){
-        
+        $request->validate([
+            'input' => 'required'
+        ]);
+        if( is_numeric($request->input) ){
+            $product = Product::where('id','=',$request->input)->get();
+        }
+        elseif(ctype_alpha(str_replace(' ', '', $request->input))){
+            $product = Product::where('name','LIKE','%'.$request->input.'%')->get();
+        }
+        else{
+            return redirect()->back()->with('fail', 'Please input name eg."Arabica" or Id number');
+        }
+        $product->map(function ($product) {
+            if(strlen($product->description) > 100) {
+                $product->description = mb_substr($product->description , 0, 100)."...";
+            }
+            return $product;
+          });
+        return view('admin.see_one_product',compact('product'));
     }
 }
