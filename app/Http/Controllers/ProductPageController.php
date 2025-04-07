@@ -18,11 +18,7 @@ class ProductPageController extends Controller
             }
             return $product;
           });
-        $history = Auth::user()->history;
-        $product_in_history = $history->map(function ($el){
-            return $el->product;
-        });
-        $product_in_history = $product_in_history->unique('id');
+          $product_in_history = $this->get_histoty();
         return view('index', compact('products','product_in_history'));
     }
 
@@ -34,12 +30,16 @@ class ProductPageController extends Controller
         $history_record->user_id = Auth::id();
         $history_record->product_id = $id;
         $history_record->save();
+        $product_in_history = $this->get_histoty();
+        return view('product',compact('product','product_in_history'));
+    }
+    function get_histoty(){
         $history = Auth::user()->history;
         $product_in_history = $history->map(function ($el){
             return $el->product;
         });
-        $product_in_history = $product_in_history->unique('id');
-        return view('product',compact('product','product_in_history'));
+        $product_in_history = $product_in_history->sortByDesc('created_at')->unique('id');
+        return $product_in_history;
     }
     public function show_sorted(Request $request)//GET
     {
