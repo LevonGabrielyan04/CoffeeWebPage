@@ -57,4 +57,15 @@ class ProductPageController extends Controller
         $table_view = view('products_list',compact('products'))->render();
         return response()->json(['succes' => true, 'table_view' => $table_view]);
     }
+
+    public function filter_data_by_price(Request $request){
+        $data = $request->json()->all();
+        $from = $data['from'];
+        $to = $data['to'];
+
+        $products = Product::whereBetween('price',[$from,$to])->get();
+
+        $table_view = view('products_list',compact('products'))->render();
+        return response()->json(['succes' => true, 'table_view' => $table_view]);
+    }
 }

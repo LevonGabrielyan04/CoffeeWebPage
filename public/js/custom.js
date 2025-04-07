@@ -137,3 +137,31 @@ svg_open.style.display = "initial";
 }
 }
 
+function filter_by_price(){
+    input_from = document.getElementById("price_from");
+    input_to = document.getElementById("price_to");
+
+    var options2 = {from: input_from.value, to: input_to.value};
+
+    fetch(window.location.href + "filter_data_by_price", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: JSON.stringify(options2)
+    }).then(response => {
+        // if (!response.ok) {
+        //     throw new Error('Network response was not ok');
+        // }
+        return response.json();
+    })
+    .then(data => {
+        if (data.succes) {
+            document.getElementById("products-main").innerHTML = data.table_view;
+        }
+    })
+    .catch(err => {
+        console.error('Error:', err);
+    });
+}

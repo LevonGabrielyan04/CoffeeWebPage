@@ -94,11 +94,11 @@
                 <div class = "real-price-filter">
                     <div class = price-input-div>
                         <span class = "secondary_span_in_price">From</span>
-                        <input class = "price-input" value="10$">
+                        <input id = "price_from" class = "price-input" onchange="filter_by_price()" value="10$">
                     </div>
                     <div class = price-input-div>
                         <span class = "secondary_span_in_price">To</span>
-                        <input class = "price-input" value="50$">
+                        <input id = "price_to" class = "price-input" onchange="filter_by_price()"  value="50$">
                     </div>
                 </div>
             </div>
