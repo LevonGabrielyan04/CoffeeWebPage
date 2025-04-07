@@ -8,7 +8,7 @@ use App\Http\Middleware\is_admin;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [ProductPageController::class, 'index'])->name('index');
+Route::get('/', [ProductPageController::class, 'index'])->name('user_index');
 Route::get('/show_sorted', [ProductPageController::class, 'show_sorted'])->name('show_sorted');
 Route::get('/show_sorted_by_date', [ProductPageController::class, 'show_sorted_by_date'])->name('show_sorted_by_date');
 Route::post('/filter_data_by_price', [ProductPageController::class, 'filter_data_by_price'])->name('filter_data_by_price');

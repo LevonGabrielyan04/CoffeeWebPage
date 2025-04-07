@@ -11,11 +11,13 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
+@if($product_in_history != "no history")
 <div class = "recently_viewed">
     <div class = "recently_viewed-span font-syne">Δοκιμάστε επίσης</div>
     <div class = "recently_viewed-products">
     <div class="swiper">
     <div class="swiper-wrapper">
+        
         @foreach ($product_in_history as $item)
         <div class="swiper-slide">
             <div class = "product_card">
@@ -34,6 +36,7 @@
         
     </div>
         @endforeach
+        
     </div>
         <!-- Add Pagination -->
         <!-- <div class="swiper-pagination"></div> -->
@@ -45,5 +48,6 @@
 </div>
 
 @include('local_javascripts.recently_viewed')
+@endif
 </body>
 </html>

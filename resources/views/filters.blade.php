@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   
 </head>
-<body>
+<body onload="index_onload()">
 <div class = "filters-container">
     <div class = "filters">
         <div class = "filter-main-span">
@@ -150,17 +150,24 @@
         </div>
         @include('products_list')
         <div class = "products-navigation">
-            <button class = "products-navigation-button font-syne">Προηγούμενος</button>
+            <a id = "previous" href = {{ route('user_index',['page' => '' ]) }}>
+                <button class = "products-navigation-button font-syne">Προηγούμενος</button>
+            </a>
             <span class = "pages_bar">
-                <a class = "pages_bar-link_selected font-syne">1</a>
-                <a class = "pages_bar-link font-syne">2</a>
-                <a class = "pages_bar-link font-syne">3</a>
-                <span class = "pages_bar-dots">...</span>
-                <a class = "pages_bar-link font-syne">8</a>
-                <a class = "pages_bar-link font-syne">9</a>
-                <a class = "pages_bar-link font-syne">10</a>
+            <a href = "{{ route('user_index',['page' => 1 ]) }}" class = "pages_bar-link  pages_bar-link_selected font-syne">1</a>
+                @for ($i = 2;$i<= min(3, $page_count);$i++)
+                    <a href = "{{ route('user_index',['page' => $i ]) }}" class = "pages_bar-link font-syne">{{ $i }}</a>
+                @endfor
+                @if($page_count > 6)
+                    <span class = "pages_bar-dots">...</span>
+                @endif
+                @for ($i = max($page_count - 2,4);$i<=$page_count;$i++)
+                    <a href = "{{ route('user_index',['page' => $i ]) }}" class = "pages_bar-link font-syne">{{ $i }}</a>
+                @endfor
             </span>
-            <button class = "products-navigation-button font-syne">Επόμενος</button>
+            <a id = "next" href = {{ route('user_index',['page' => '2' ]) }}>
+                <button class = "products-navigation-button font-syne">Επόμενος</button>
+            </a>
         </div>
     </div>
 </div>

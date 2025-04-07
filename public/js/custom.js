@@ -165,3 +165,30 @@ function filter_by_price(){
         console.error('Error:', err);
     });
 }
+
+function index_onload(){
+    var next = document.getElementById('next');
+    var previous = document.getElementById('previous');
+    const selected = document.getElementsByClassName('pages_bar-link_selected')[0];
+    var numbers = document.getElementsByClassName('pages_bar-link');
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    const currentPage = parseInt(urlParams.get('page'));
+  
+    const url = new URL(next.href);
+    url.searchParams.set('page', currentPage + 1);
+    next.href = url.toString();
+
+    const url2 = new URL(previous.href);
+    url2.searchParams.set('page', currentPage - 1);
+    previous.href = url2.toString();
+    
+
+    const selected_number = urlParams.get('page') || '1';
+    for(var num of numbers){
+        num.classList.remove("pages_bar-link_selected");
+        if(parseInt(num.innerHTML) == selected_number){
+            num.classList.add("pages_bar-link_selected");
+        }
+    }
+}

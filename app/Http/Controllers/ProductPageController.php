@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\History;
-use App\Models\Product;;
+use App\Models\Product;
+use Exception;
+
+;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProductPageController extends Controller
 {
+    private $pagination = 1;
 
     function index() {
-        $products = Product::all();
+        $products = Product::paginate($this->pagination);
         $products->map(function ($product) {
             if(strlen($product->description) > 100) {
                 $product->description = mb_substr($product->description , 0, 100)."...";
@@ -19,7 +23,8 @@ class ProductPageController extends Controller
             return $product;
           });
           $product_in_history = $this->get_histoty();
-        return view('index', compact('products','product_in_history'));
+          $page_count = Product::count() / $this->pagination;
+        return view('index', compact('products','product_in_history','page_count'));
     }
 
     public function show_product(Request $request)//GET, not POST
@@ -31,10 +36,18 @@ class ProductPageController extends Controller
         $history_record->product_id = $id;
         $history_record->save();
         $product_in_history = $this->get_histoty();
-        return view('product',compact('product','product_in_history'));
+        if($product_in_history != "no history")
+            return view('product',compact('product','product_in_history'));
+        else
+            return view('product',compact('product'));
     }
     function get_histoty(){
-        $history = Auth::user()->history;
+        try{
+            $history = Auth::user()->history;
+        }
+        catch(Exception $e){
+            return "no history";
+        }
         $product_in_history = $history->map(function ($el){
             return $el->product;
         });

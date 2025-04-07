@@ -392,16 +392,8 @@ accent-color:#AB2531;
 }
 
 .pages_bar-link_selected{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 24px;
-    height: 24px;
     background-color: #AB2531;
-    border-radius: 6px;
-    font-size: 14px;
-    color: white;
-    cursor: pointer;
+    color: white!important;
 }
 
 .pages_bar-link{
@@ -413,6 +405,8 @@ accent-color:#AB2531;
     border-radius: 6px;
     font-size: 14px;
     cursor: pointer;
+    text-decoration: none;
+    color: black;
 }
 
 .pages_bar-dots{
