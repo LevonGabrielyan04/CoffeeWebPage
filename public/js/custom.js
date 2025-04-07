@@ -1,16 +1,40 @@
+var options = {Καφές: false, Αξεσουάρ:false, Άλλα:false};
 function checkbox(selection){
     var items = document.getElementsByName('value');
     for(let item of items){
-        if(item.innerHTML.localeCompare(selection) == 0){
+        if(item.innerHTML === selection){
             if(document.getElementById(selection).style.display === "none"){
                 document.getElementById(selection).style.display = "flex";
+                options[selection] = true;
             }
             else{
                 document.getElementById(selection).style.display = "none";
                 document.getElementById(selection + "_input").checked = false;
+                options[selection] = false;
             }
         }
     }
+    fetch(window.location.href + "filter_data", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: JSON.stringify(options)
+    }).then(response => {
+        // if (!response.ok) {
+        //     throw new Error('Network response was not ok');
+        // }
+        return response.json();
+    })
+    .then(data => {
+        if (data.succes) {
+            document.getElementById("products-main").innerHTML = data.table_view;
+        }
+    })
+    .catch(err => {
+        console.error('Error:', err);
+    });
 }
 
 function filter_dropdown(){

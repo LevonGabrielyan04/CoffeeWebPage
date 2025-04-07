@@ -20,6 +20,7 @@ Route::get('/', function () {
 })->name('index');
 Route::get('/show_sorted', [ProductPageController::class, 'show_sorted'])->name('show_sorted');
 Route::get('/show_sorted_by_date', [ProductPageController::class, 'show_sorted_by_date'])->name('show_sorted_by_date');
+Route::post('/filter_data', [ProductPageController::class, 'filter_data'])->name('filter_data');
 
 Route::get('/dashboard', function () {
     //return view('dashboard');

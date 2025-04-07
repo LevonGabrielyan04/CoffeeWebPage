@@ -32,4 +32,29 @@ class ProductPageController extends Controller
         $table_view = view('products_list',compact('products'))->render();
         return response()->json(['succes' => true, 'table_view' => $table_view]);
     }
+    public function filter_data(Request $request){
+        $data = $request->json()->all();
+        $search_options = [];
+
+        if($data['Καφές'])
+            $search_options[] = "Coffee";
+        if($data['Αξεσουάρ'])
+            $search_options[] = "Accessories";
+        if($data['Άλλα'])
+            $search_options[] = "Other";
+        
+        
+        if(count($search_options) === 0)
+            $products = $products = Product::all();
+        else
+            $products = Product::whereIn('category', $search_options)->get();
+        $products->map(function ($product) {
+            if(strlen($product->description) > 100) {
+                $product->description = mb_substr($product->description , 0, 100)."...";
+            }
+            return $product;
+          });
+        $table_view = view('products_list',compact('products'))->render();
+        return response()->json(['succes' => true, 'table_view' => $table_view]);
+    }
 }
