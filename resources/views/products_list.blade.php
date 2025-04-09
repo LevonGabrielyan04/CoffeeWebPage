@@ -22,7 +22,10 @@
             <div class = "product_card-secondary_text font-syne">{{ $product->description }}</div>
             <div class = "product_card-price font-syne">${{ $product->price }}</div>
         </div>
-        <a href = "{{ route('product', ['id' => $product->id]) }}" class = "product_card-link">
+        {{-- <a style="" href = "{{ route('product', ['id' => $product->id]) }}" class = "product_card-link">
+!!!!!!!!!!!!!!!!!<button class = "font-syne product_card-button">Προσθήκη στην κάρτα</button>
+        </a> --}}
+        <a style="" href = "{{ route('product', ['id' => $product->id]) }}" class = "product_card-link">
             <button class = "font-syne product_card-button">Προσθήκη στην κάρτα</button>
         </a>
     </div>

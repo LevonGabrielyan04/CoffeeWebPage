@@ -8,22 +8,25 @@
     <meta charset="utf-8" />
 </head>
 <body>
-    <div class = "main">
+    <div class = "main admin_panel_main">
         @include('admin.admin_header')
         <div class = "center">
             <div class = "form_at_center all_users">
+                <h1>All Users</h1>
+                <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
                 @foreach ($users as $user)
-                    <div class = "user_card">
-                        <div>Id:&nbsp;{{$user->id  }}</div>
-                        <div>Name:&nbsp;{{$user->name  }}</div>
-                        <div>Email:&nbsp;{{$user->email  }}</div>
-                        <div>Email verified at:&nbsp;{{$user->email_verified_at  }}</div>
-                        <div>Created at:&nbsp;{{$user->created_at  }}</div>
-                        <div>Updated at:&nbsp;{{$user->updated_at  }}</div>
-                        <div>Role:&nbsp;{{$user->role  }}</div>
-                        <hr>
-                    </div>
+                <tr>
+                        <td>{{$user->name  }}</td>
+                        <td>{{$user->email  }}</td>
+                        <td>{{$user->role  }}</td>
+                </tr>
                 @endforeach
+                </table>
             </div>
         </div>
     </div>

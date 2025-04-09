@@ -8,14 +8,17 @@
     <meta charset="utf-8" />
 </head>
 <body>
-    <div class = "main">
+    <div class = "main admin_panel_main">
         @include('admin.admin_header')
+        
         <div class = "center center_in_see_one">
             <div class = "form_at_center product_card2 user_card-no-border">
+                <h1>See one product</h1>
                 <form action="{{ route('show_product.post') }}" method="POST" class="real_form product_form">
                 @csrf
-                 <input name = "input" class = "admin_form_input" placeholder="Enter name or Id">
-                    <button type = "submit">Search</button>
+                <label>Product name:</label>
+                 <input name = "input" class = "admin_form_input admin_form_big_input" placeholder="Lavazza">
+                    <button class = "header-button" type = "submit">Search</button>
                  </form>  
                      @if (\Session::has('fail'))
     <div class="alert alert-fail">

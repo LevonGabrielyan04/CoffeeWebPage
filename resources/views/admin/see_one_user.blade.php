@@ -8,14 +8,17 @@
     <meta charset="utf-8" />
 </head>
 <body>
-    <div class = "main">
+    <div class = "main admin_panel_main">
         @include('admin.admin_header')
+        
         <div class = "center center_in_see_one">
-            <div class = "form_at_center">
+            <div class = "form_at_center form_in_one_user">
+                <h1>See one user</h1>
                 <form action="{{ route('show.post') }}" method="POST" class="real_form">
                 @csrf
-                 <input name = "input" class = "admin_form_input" placeholder="Enter name, email or Id">
-                    <button type = "submit">Search</button>
+                <label>Name or email:</label>
+                 <input name = "input" class = "admin_form_input admin_form_big_input" placeholder="example@gmail.com">
+                    <button class = "header-button" type = "submit">Search</button>
                  </form>  
                      @if (\Session::has('fail'))
     <div class="alert alert-fail">
@@ -34,7 +37,7 @@
             
             @if(!empty($user))
             <div class = "box_at_center user_card-no-border">
-            @if(is_iterable(session('user')))
+            @if(is_iterable($user))
             @foreach ($user as $item)
             <div class = "user_card">
                             <div>Id:&nbsp;{{$item->id  }}</div>

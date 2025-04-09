@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\History;
 use App\Models\Product;
 use Exception;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductPageController extends Controller
 {
-    private $pagination = 1;
+    private $pagination = 3;
 
     function index() {
         $products = Product::paginate($this->pagination);
@@ -23,8 +24,9 @@ class ProductPageController extends Controller
             return $product;
           });
           $product_in_history = $this->get_histoty();
-          $page_count = Product::count() / $this->pagination;
-        return view('index', compact('products','product_in_history','page_count'));
+          $page_count = ceil(Product::count() / $this->pagination);
+          $categories = Category::all();
+        return view('index', compact('products','product_in_history','page_count','categories'));
     }
 
     public function show_product(Request $request)//GET, not POST
@@ -75,20 +77,12 @@ class ProductPageController extends Controller
     }
     public function filter_data(Request $request){
         $data = $request->json()->all();
-        $search_options = [];
-
-        if($data['Καφές'])
-            $search_options[] = "Coffee";
-        if($data['Αξεσουάρ'])
-            $search_options[] = "Accessories";
-        if($data['Άλλα'])
-            $search_options[] = "Other";
-        
+        $search_options = $data;        
         
         if(count($search_options) === 0)
-            $products = $products = Product::all();
+            $products = $products = Product::paginate($this->pagination);
         else
-            $products = Product::whereIn('category', $search_options)->get();
+            $products = Product::whereIn('category', $search_options)->paginate($this->pagination);
         $products->map(function ($product) {
             if(strlen($product->description) > 100) {
                 $product->description = mb_substr($product->description , 0, 100)."...";

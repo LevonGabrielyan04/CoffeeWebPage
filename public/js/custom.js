@@ -1,20 +1,26 @@
-var options = {Καφές: false, Αξεσουάρ:false, Άλλα:false};
+//var options = {Καφές: false,Αξεσουάρ:false,Άλλα:false};
+var options = [];
 function checkbox(selection){
     var items = document.getElementsByName('value');
     for(let item of items){
         if(item.innerHTML === selection){
             if(document.getElementById(selection).style.display === "none"){
                 document.getElementById(selection).style.display = "flex";
-                options[selection] = true;
+                //Object.defineProperty(options, selection, {value:true});
+                options.push(selection);
             }
             else{
                 document.getElementById(selection).style.display = "none";
                 document.getElementById(selection + "_input").checked = false;
-                options[selection] = false;
+                //options[selection] = false;
+                options = options.filter(item => item !== selection);
             }
         }
     }
-    fetch(window.location.href + "filter_data", {
+    var a = new URL(window.location.href);
+    a.pathname = "/filter_data" + a.pathname;
+    
+    fetch(a.toString(), {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
@@ -173,7 +179,7 @@ function index_onload(){
     var numbers = document.getElementsByClassName('pages_bar-link');
     const urlParams = new URLSearchParams(window.location.search);
     
-    const currentPage = parseInt(urlParams.get('page'));
+    const currentPage = parseInt(urlParams.get('page'))|| 1;
   
     const url = new URL(next.href);
     url.searchParams.set('page', currentPage + 1);

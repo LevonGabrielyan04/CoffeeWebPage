@@ -1,25 +1,27 @@
-<html lang="el">
-<head>
+<html lang="el" style="background-color:white;">
+{{-- <head>
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-    {{-- @vite('resources/css/app.css') CHBACEL!!! --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap" rel="stylesheet">
     <meta charset="utf-8" />
-</head>
+</head> --}}
 <body>
 <div class = "header admin-header">
-        <div class = "header-bar-small-text-bar">
-            <a href="{{ route('admin_panel') }}">
+        <div class = "header-bar-small-text-bar header-bar-small-text-bar-admin">
+            <a href="{{ route('admin_panel') }}" class = "link">
                 <h1 class = "header-bar-small-text">Create new product</h1>
             </a>
-            <a href="{{ route('index') }}">
+            <a href="{{ route('create.category') }}" class = "link">
+                <h1 class = "header-bar-small-text">Create new category</h1>
+            </a>
+            <a href="{{ route('index') }}" class = "link">
                 <h1 class = "header-bar-small-text">See all users</h1>
             </a>
-            <a href="{{ route('show') }}">
+            <a href="{{ route('show') }}" class = "link">
                 <h1 class = "header-bar-small-text">See certain user</h1>
             </a>
-            <a href="{{ route('show_product') }}">
+            <a href="{{ route('show_product') }}" class = "link">
                 <h1 class = "header-bar-small-text">See certain product</h1>
             </a>
         </div>

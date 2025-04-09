@@ -26,27 +26,15 @@
                     </svg>
             </div>
             <div class = "filter1-lines-container" id = "filter1_container">
+                @foreach ($categories as $item)
                 <div class = "filter1-line" style = "margin-top: 12px;">
                     <div class = "filter1-line-left-part">
-                        <input id = "Καφές_input" class = "filter1-checkbox" type="checkbox" onchange="checkbox('Καφές')">
-                        <span class = "filter1-text">Καφές</span>
+                        <input id = "{{ $item->name }}_input" class = "filter1-checkbox" type="checkbox" onchange="checkbox('{{ $item->name }}')">
+                        <span class = "filter1-text">{{ $item->name }}</span>
                     </div>
-                    <span class = "filter1-line-right-part filter1-text">5</span>
+                     <span class = "filter1-line-right-part filter1-text"></span>{{--Item count --}}
                 </div>
-                <div class = "filter1-line">
-                    <div class = "filter1-line-left-part">
-                        <input id = "Αξεσουάρ_input" class = "filter1-checkbox" type="checkbox" onchange="checkbox('Αξεσουάρ')">
-                        <span class = "filter1-text">Αξεσουάρ</span>
-                    </div>
-                    <span class = "filter1-line-right-part filter1-text">12</span>
-                </div>
-                <div class = "filter1-line">
-                    <div class = "filter1-line-left-part">
-                        <input id = "Άλλα_input" class = "filter1-checkbox" type="checkbox" onchange="checkbox('Άλλα')">
-                        <span class = "filter1-text">Άλλα</span>
-                    </div>
-                    <span class = "filter1-line-right-part filter1-text">10</span>
-                </div>
+                @endforeach
             </div>
             </div>
             <!-- <div class = "filter2">
@@ -109,24 +97,14 @@
             <div class = "filter-navbar-left">
                 <div class = "filter-navbar-left">
                     <div class = "filter-div">Εφαρμοσμένο φίλτρο</div>
-                    <div id = "Καφές" style="display: none;" class = "filter-selection">
-                        <div name="value" class = "font-syne">Καφές</div>
-                        <svg style="cursor:pointer" onclick="checkbox('Καφές')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    @foreach ($categories as $item)
+                    <div id = "{{ $item->name }}" style="display: none;" class = "filter-selection">
+                        <div name="value" class = "font-syne">{{ $item->name }}</div>
+                        <svg style="cursor:pointer" onclick="checkbox('{{ $item->name }}')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path d="M6.75824 17.2426L12.0009 12M12.0009 12L17.2435 6.75739M12.0009 12L6.75824 6.75739M12.0009 12L17.2435 17.2426" stroke="#727272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                     </div>
-                    <div id = "Αξεσουάρ" style="display: none;" class = "filter-selection">
-                        <div name="value"  class = "font-syne">Αξεσουάρ</div>
-                        <svg style="cursor:pointer" onclick="checkbox('Αξεσουάρ')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M6.75824 17.2426L12.0009 12M12.0009 12L17.2435 6.75739M12.0009 12L6.75824 6.75739M12.0009 12L17.2435 17.2426" stroke="#727272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                    </div>
-                    <div id = "Άλλα" style="display: none;" class = "filter-selection">
-                        <div name="value"  class = "font-syne">Άλλα</div>
-                        <svg style="cursor:pointer" onclick="checkbox('Άλλα')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M6.75824 17.2426L12.0009 12M12.0009 12L17.2435 6.75739M12.0009 12L6.75824 6.75739M12.0009 12L17.2435 17.2426" stroke="#727272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class = "filter-navbar-right font-syne">

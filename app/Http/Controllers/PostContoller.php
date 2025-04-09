@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ class PostContoller extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'category' => 'required',
             'description' => 'required|string|max:2000',
             'price' => 'required|numeric',
             'weight' => 'required|numeric',
@@ -25,6 +27,7 @@ class PostContoller extends Controller
         ]);
         $product = new Product();
         $product->name = $request->name;
+        $product->category = $request->category;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->weight = $request->weight;
@@ -44,9 +47,7 @@ class PostContoller extends Controller
         $request->validate([
             'input' => 'required'//name, email or id
         ]);
-        if( is_numeric($request->input) ){
-            $user = User::find($request->input);
-        }elseif(filter_var($request->input, FILTER_VALIDATE_EMAIL)){
+        if(filter_var($request->input, FILTER_VALIDATE_EMAIL)){
             $user = User::where('email', '=',$request->input)->firstOrFail();
         }
         elseif(ctype_alpha(str_replace(' ', '', $request->input))){
@@ -78,5 +79,19 @@ class PostContoller extends Controller
             return $product;
           });
         return view('admin.see_one_product',compact('product'));
+    }
+
+    public function store_category(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        $category = new Category();
+        $category->name = $request->name;
+        if( $category->save() ){
+            return redirect()->back()->with('success', 'category created');
+        }
+        return redirect()->back()->with('fail', 'incorect input');
     }
 }
