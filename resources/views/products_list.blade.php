@@ -23,9 +23,9 @@
             <div class = "product_card-price font-syne">${{ $product->price }}</div>
         </div>
         {{-- <a style="" href = "{{ route('product', ['id' => $product->id]) }}" class = "product_card-link">
-!!!!!!!!!!!!!!!!!<button class = "font-syne product_card-button">Προσθήκη στην κάρτα</button>
+            <button class = "font-syne product_card-button">Προσθήκη στην κάρτα</button>
         </a> --}}
-        <a style="" href = "{{ route('product', ['id' => $product->id]) }}" class = "product_card-link">
+        <a style="" href = "{{ route('checkout', ['id' => $product->id]) }}" class = "product_card-link">
             <button class = "font-syne product_card-button">Προσθήκη στην κάρτα</button>
         </a>
     </div>

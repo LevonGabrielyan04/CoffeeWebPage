@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PostContoller;
 use App\Http\Controllers\ProductPageController;
 use App\Http\Controllers\ProfileController;
@@ -26,6 +27,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/product',[ProductPageController::class, 'show_product'])->name('product');
+    Route::get('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
+    Route::post('/payment', [PaymentController::class, 'payment'])->name('payment');
+    Route::get('/success', [PaymentController::class, 'success'])->name('success');
+    Route::get('/cancel', [PaymentController::class, 'cancel'])->name('cancel');
 });
 
 Route::middleware(is_admin::class)->group(function() {

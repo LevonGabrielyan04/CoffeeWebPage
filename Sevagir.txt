@@ -1,2 +1,2 @@
 (heto)producti steghtsumy sarqel AJAX-ov, sexmeluc heto "create" knopkayi koxqy avelana pttvogh oghak
-HIMA - Stripe Laravel-ov sarqel hnaravor lini vjarel producti hamar
+HIMA - Stripe Laravel-ov sarqel hnaravor lini vjarel producti hamar(qarti hamary grel 42424242424...)
