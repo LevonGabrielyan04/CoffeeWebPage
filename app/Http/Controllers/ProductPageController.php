@@ -63,7 +63,7 @@ class ProductPageController extends Controller
     public function show_sorted_by_date(Request $request)//GET
     {
         return $this->sort($request->sort_type,'created_at');
-    }
+    } 
     function sort($sort_type,$type){
         $products = Product::orderBy($type, $sort_type)->get();
         $products->map(function ($product) {

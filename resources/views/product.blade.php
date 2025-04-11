@@ -55,13 +55,35 @@
                 </div>
 
                 <div class = "selected_count">
-                    <div>Προσθήκη στην κάρτα</div>
+                    <a onclick="addToCart({{ $product->id}}, {{ Auth::id()  }})" id = "cart_button" class = "add_to_cart_button">Προσθήκη στην κάρτα</a>
                     <div class = "count_bar">
-                        <button class = "coutn_bar-button">-</button>
+                        <button id = "button_minus" class = "coutn_bar-button" onclick="decrease()" type="button">-</button>
                         <span class = "selected_count_number" id = "selected_count">1</span>
-                        <button class = "coutn_bar-button">+</button>
+                        <button id = "button_plus" class = "coutn_bar-button" onclick = "increse()" type="button">+</button>
+                        <a href = "{{ route('payment', ['id' => $product->id, 'quantity' => '1']) }}" class = "product_card-link">
+                            <button class = "font-syne product_card-button">BUY NOW</button>
+                        </a>
                     </div>
                 </div>
+                @if (\Session::has('success'))
+                <div class="alert alert-success">
+                    {!! \Session::get('success') !!}
+                </div>
+                @endif
+                @if (\Session::has('fail'))
+                <div class="alert alert-fail">
+                        {!! \Session::get('fail') !!}
+                </div>
+                @endif
+                @if ($errors->any())
+                <div class="alert alert-fail">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                       </ul>
+                     @endforeach
+                </div>
+            @endif
             </div>
         </div>
             </div>
@@ -71,7 +93,7 @@
         @include('footer') 
     <div>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+        @include('productJS')
         <!-- Initialize Swiper -->
         <script>
           var swiper = new Swiper('.swiper', {

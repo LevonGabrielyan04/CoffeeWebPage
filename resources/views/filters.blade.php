@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   
 </head>
-<body onload="index_onload()">
+<body onload="index_onload({{ $page_count }})">
 <div class = "filters-container">
     <div class = "filters">
         <div class = "filter-main-span">

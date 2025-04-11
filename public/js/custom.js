@@ -172,7 +172,7 @@ function filter_by_price(){
     });
 }
 
-function index_onload(){
+function index_onload(page_count){
     var next = document.getElementById('next');
     var previous = document.getElementById('previous');
     const selected = document.getElementsByClassName('pages_bar-link_selected')[0];
@@ -182,11 +182,11 @@ function index_onload(){
     const currentPage = parseInt(urlParams.get('page'))|| 1;
   
     const url = new URL(next.href);
-    url.searchParams.set('page', currentPage + 1);
+    url.searchParams.set('page', Math.min(currentPage + 1,page_count));
     next.href = url.toString();
 
     const url2 = new URL(previous.href);
-    url2.searchParams.set('page', currentPage - 1);
+    url2.searchParams.set('page', Math.max(currentPage - 1,1));
     previous.href = url2.toString();
     
 
@@ -196,5 +196,5 @@ function index_onload(){
         if(parseInt(num.innerHTML) == selected_number){
             num.classList.add("pages_bar-link_selected");
         }
-    }
+    } 
 }

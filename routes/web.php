@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminPageController;
+use App\Http\Controllers\CardController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PostContoller;
@@ -16,7 +17,7 @@ Route::get('/show_sorted_by_date', [ProductPageController::class, 'show_sorted_b
 Route::post('/filter_data_by_price', [ProductPageController::class, 'filter_data_by_price'])->name('filter_data_by_price');
 Route::post('/filter_data', [ProductPageController::class, 'filter_data'])->name('filter_data');
 Route::get('/get_categories',[CategoriesController::class, 'get_categories'])->name('get.categories');
-
+ 
 Route::get('/dashboard', function () {
     //return view('dashboard');
     return redirect('/');
@@ -28,9 +29,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/product',[ProductPageController::class, 'show_product'])->name('product');
     Route::get('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
-    Route::post('/payment', [PaymentController::class, 'payment'])->name('payment');
+    Route::get('/payment', [PaymentController::class, 'payment'])->name('payment');
     Route::get('/success', [PaymentController::class, 'success'])->name('success');
     Route::get('/cancel', [PaymentController::class, 'cancel'])->name('cancel');
+    Route::post('/add_to_cart', [CardController::class, 'add_to_cart'])->name('add.to.cart');
+    Route::get('/card',[CardController::class,'index'])->name('card.index');
+    Route::get('/delete_from_card',[CardController::class,'delete_from_card'])->name('delete.from.card');
 });
 
 Route::middleware(is_admin::class)->group(function() {

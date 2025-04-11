@@ -52,4 +52,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(History::class);
     }
+
+    public function cardProducts()
+    {
+        return $this->belongsToMany(Product::class,'card')
+        ->withPivot('quantity');
+    }
 }
