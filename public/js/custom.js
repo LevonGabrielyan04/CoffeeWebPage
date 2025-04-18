@@ -62,18 +62,26 @@ function do_some_magic(svg_id,div_id){
     var uri_to_plus;
     var svg_id;
     if(div_id == 'sort_by_price_div'){
-        uri_to_plus = "show_sorted?sort_type="
+        //uri_to_plus = "show_sorted?sort_type="
+        uri_to_plus = "show_sorted"
         svg_id = "sorting_svg1";
     }
     else if(div_id == 'sort_by_date_div'){
-        uri_to_plus = "show_sorted_by_date?sort_type="
+        //uri_to_plus = "show_sorted_by_date?sort_type="
+        uri_to_plus = "show_sorted_by_date"
         svg_id = "sorting_svg2";
     }
         var url;
         if(document.getElementById(svg_id).style.transform == 'rotate(180deg)'){
-            var url = window.location.href + uri_to_plus + encodeURIComponent('DESC');
+            //var url = window.location.href + uri_to_plus + encodeURIComponent('DESC');
+
+            var url = new URL(window.location.href);
+            url.pathname = uri_to_plus + url.pathname;
+            url.searchParams.append('sort_type', 'DESC');
         }else{
-            var url = window.location.href + uri_to_plus + encodeURIComponent('ASC');
+            var url = new URL(window.location.href);
+            url.pathname = uri_to_plus + url.pathname;
+            url.searchParams.append('sort_type', 'ASC');
         }
         fetch(url)
             .then(response => {
