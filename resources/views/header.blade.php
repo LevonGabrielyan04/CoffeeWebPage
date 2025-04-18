@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class = "header">
-    <img class="header-image" src = "https://s3-alpha-sig.figma.com/img/761a/36b3/6ea0b11bf7851be11678f495cd498125?Expires=1744588800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=J0sizeI9nnrb0VQiIbg1XLdPMChAYd0lKLx2DK8KP3DTfz2FDzG6l-UbbUJEn6MJhLgihhUbEICn1diwZzYK28AR4qK4OfLtrrjUgKdajvPem4lqQu20GxOdRK3EAw0zFqF8W5mx8U67oWUTtiy9EW8dZkZs2Po9l6QZVEHTgFWx5DzF~dLYXH2fZNMZs~PEs5X~EOWdNuyWwDEu2Ajvc3su831hIygPEhjiYb59Nd8JR0JkodHDMoaDJPbdJ3~vkHfuW2dnf9u8FOEuT8iVy-A6ufG9dS5W1B1Zzqb9vz43xitpov0wNCbfocz8w3h1M-oNbujajqGKPBlPcJIgnw__">
+    <img class="header-image" src = "img/cropped-Omerta_Logo@3x-1 1.png" alt="Logo" />
         <div class = "header-bar-small-text-bar">
             <h1 class = "header-bar-small-text">Αρχική</h1>
             <h1 class = "header-bar-small-text">Εταιρεία</h1>
