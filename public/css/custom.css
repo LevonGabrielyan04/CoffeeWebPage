@@ -889,7 +889,8 @@ accent-color:#AB2531;
 
   .admin_button{
     height: fit-content;
-    background-color:#007aff;
+    /* background-color:rebeccapurple; */
+    background-color: black;
   }
 
   .center{
@@ -1173,11 +1174,13 @@ accent-color:#AB2531;
     font-size: 24px;
     line-height: 50px;
     border-radius: 22px;
+    margin-top: 10px;
   }
 
   .ribbon-item{
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
   }
 
   .ribbon-title{
@@ -1189,4 +1192,10 @@ accent-color:#AB2531;
     width:30px;
     cursor: pointer;
 
+  }
+
+  .ribbon-item-image{
+    width: 100%;
+    max-height: 200px;
+    display: block;
   }
