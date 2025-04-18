@@ -35,7 +35,24 @@
                 }, function(result) {
                     $("#cart_button").html(result.message);
                 });
-                
+            $.get('/ribbon', function(data) {
+                $('#ribbon').html(data);
+                $('#ribbon').removeClass('d_none');
+            });
+            
+            // setTimeout(function() {
+            //     $('#ribbon').addClass('d_none');
+            // }, 10000);
     }
 
+    $(window).click(function() {
+        $('#ribbon').addClass('d_none');
+    });
+
+    $('#ribbon').click(function(event){
+        event.stopPropagation();
+    });
+    $('.selected_count').click(function(event){
+        event.stopPropagation();
+    });
 </script>

@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/add_to_cart', [CardController::class, 'add_to_cart'])->name('add.to.cart');
     Route::get('/card',[CardController::class,'index'])->name('card.index');
     Route::get('/delete_from_card',[CardController::class,'delete_from_card'])->name('delete.from.card');
+    Route::get('/ribbon',[CardController::class, 'ribbon'])->name('ribbon');
 });
 
 Route::middleware(is_admin::class)->group(function() {

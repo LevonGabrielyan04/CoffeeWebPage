@@ -10,7 +10,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
+    <div id = "ribbon"></div>
     <div class = "main">
+        
         @include('header')
         <div class = "path_container">
             <span class = "product_path_first font-syne">Κύριος</span>

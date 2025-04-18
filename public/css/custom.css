@@ -1157,3 +1157,36 @@ accent-color:#AB2531;
     display: flex;
     align-items: center;
   }
+
+  .ribbon{
+    z-index: 50;
+    width: 311px;
+    max-height: 800px;
+    height: fit-content;
+    position: fixed;
+    top: 0;
+    right: 150px;
+    /* background-color: #E7E6EC; */
+    background-color: #AB2531;
+    padding: 30px;
+    color: white;
+    font-size: 24px;
+    line-height: 50px;
+    border-radius: 22px;
+  }
+
+  .ribbon-item{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .ribbon-title{
+    text-align: center;
+    font-size: 35px;
+  }
+
+  .card_icon{
+    width:60px;
+    cursor: pointer;
+    
+  }

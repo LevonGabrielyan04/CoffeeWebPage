@@ -1,5 +1,0 @@
-(heto)producti steghtsumy sarqel AJAX-ov, sexmeluc heto "create" knopkayi koxqy avelana pttvogh oghak
-
-
-6.sarqel "lenta" vorum klinen apranqi anuny u qanaky verjum el klini yndhanur giny. Lentan petqa haytnvi apranq avelacneluc heto
-7."?page=1" url-i depqum sortavorumy chi ashxatum(do_some_magic funkciya) - ughel

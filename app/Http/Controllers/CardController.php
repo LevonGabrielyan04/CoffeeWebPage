@@ -60,4 +60,17 @@ class CardController extends Controller
 
         return redirect()->back();
     }
+
+    public function ribbon()
+    {
+        $products = Auth::user()->cardProducts()->get();
+
+        $total_price = 0;
+        foreach($products as $product)
+        {
+            $total_price += $product->price * $product->pivot->quantity;
+        }
+
+        return view('ribbon',compact('products','total_price'))->render();
+    }
 }
